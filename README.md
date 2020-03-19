@@ -8,6 +8,14 @@ For example:
       -v $(pwd)/example01/test:/app dcycle/compresspdf:1 \
       screen generic_pdf3.pdf generic_pdf3.compressed.pdf 
 
+Compressing mulitple pdfs:
+
+    for f in *.pdf; do 
+      docker run --rm \
+        -v $(pwd):/app dcycle/compresspdf:1 \
+        screen "$f" "$f".compressed.pdf; 
+    done 
+
 See [this project on the Docker Hub](https://hub.docker.com/r/dcycle/compresspdf/).
 
 More resources
