@@ -1,11 +1,14 @@
 FROM python
 
-RUN apt-get -y update
-RUN apt-get -y install ghostscript
-RUN curl https://raw.githubusercontent.com/hkdb/cpdf/master/cpdf -o /bin/cpdf
-RUN chmod +x /bin/cpdf
-
 WORKDIR /app
+
+RUN pip install pyprind && \
+  apt-get -y update && \
+  apt-get -y --no-install-recommends install ghostscript && \
+  curl https://raw.githubusercontent.com/hkdb/cpdf/master/cpdf -o /bin/cpdf && \
+  chmod +x /bin/cpdf && \
+  rm -rf /var/lib/apt/lists/*
+
 RUN ls -lah /bin
 
 ENTRYPOINT [ "cpdf" ]
