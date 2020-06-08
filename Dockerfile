@@ -2,7 +2,7 @@ FROM python
 
 WORKDIR /app
 
-RUN pip install pyprind && \
+RUN pip3 install pyprind && \
   apt-get -y update && \
   apt-get -y --no-install-recommends install ghostscript && \
   curl https://raw.githubusercontent.com/hkdb/cpdf/master/cpdf -o /bin/cpdf && \
