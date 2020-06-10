@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/dcycle/docker-compresspdf.svg?style=svg)](https://circleci.com/gh/dcycle/docker-compresspdf)
 
-**This Docker image is still working as per the instructions above, but it can no longer be updated to use the latest version of CDPF until [this issue](https://github.com/dcycle/docker-compresspdf/issues/1) is resolved.**
+**This Docker image is still working as per the instructions below, but it is no longer updated to use the latest version of CDPF until [this issue](https://github.com/dcycle/docker-compresspdf/issues/1) is resolved.**
 
 Compress PDF using [cdpf and gs](https://github.com/hkdb/cpdf/blob/master/cpdf).
 
