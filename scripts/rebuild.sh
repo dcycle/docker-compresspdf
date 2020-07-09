@@ -21,11 +21,11 @@ fi
 
 PROJECT=compresspdf
 DATE=`date '+%Y-%m-%d-%H-%M-%S-%Z'`
-MAJORVERSION='1'
-VERSION='1.0'
+MAJORVERSION='2'
+VERSION='2.0'
 
 # Start by getting the latest version of the official drupal image
-docker pull python
+docker pull ubuntu
 # Rebuild the entire thing
 docker build --no-cache -t dcycle/"$PROJECT":"$VERSION" .
 docker build -t dcycle/"$PROJECT":"$MAJORVERSION" .

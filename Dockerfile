@@ -1,11 +1,11 @@
-FROM python
-
-RUN apt-get -y update
-RUN apt-get -y install ghostscript
-RUN curl https://raw.githubusercontent.com/hkdb/cpdf/master/cpdf -o /bin/cpdf
-RUN chmod +x /bin/cpdf
+FROM ubuntu
 
 WORKDIR /app
-RUN ls -lah /bin
 
-ENTRYPOINT [ "cpdf" ]
+RUN apt-get -y update && \
+  apt-get -y --no-install-recommends install ghostscript && \
+  rm -rf /var/lib/apt/lists/*
+
+COPY docker-resources/run.sh /run.sh
+
+ENTRYPOINT [ "/run.sh" ]
