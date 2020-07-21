@@ -12,7 +12,7 @@ Compressing mulitple pdfs:
 
     for f in *.pdf; do
       docker run --rm \
-        -v $(pwd):/app dcycle/compresspdf:1 \
+        -v $(pwd):/app dcycle/compresspdf:2 \
         screen "$f" "$f".compressed.pdf;
     done
 
