@@ -8,6 +8,8 @@ For example:
       -v $(pwd)/example01/test:/app dcycle/compresspdf:2 \
       screen generic_pdf3.pdf generic_pdf3.compressed.pdf
 
+(For higher quality and larger file size you can use "printer" instead of "screen".)
+
 Compressing mulitple pdfs:
 
     for f in *.pdf; do
