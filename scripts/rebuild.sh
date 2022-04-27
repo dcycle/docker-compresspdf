@@ -24,16 +24,30 @@ DATE=`date '+%Y-%m-%d-%H-%M-%S-%Z'`
 MAJORVERSION='2'
 VERSION='2.0'
 
-# Start by getting the latest version of the official drupal image
-docker pull ubuntu
-# Rebuild the entire thing
-docker build --no-cache -t dcycle/"$PROJECT":"$VERSION" .
-docker build -t dcycle/"$PROJECT":"$MAJORVERSION" .
-docker build -t dcycle/"$PROJECT":"$MAJORVERSION".$DATE .
-docker build -t dcycle/"$PROJECT":"$VERSION".$DATE .
+./test.sh
+
+PROJECT=compresspdf
+DATE=`date '+%Y-%m-%d-%H-%M-%S-%Z'`
+MAJORVERSION='3'
+VERSION='3.0'
+
+# See https://github.com/dcycle/prepare-docker-buildx, for M1 native images.
+git clone https://github.com/dcycle/prepare-docker-buildx.git
+cd prepare-docker-buildx
+export DOCKER_CLI_EXPERIMENTAL=enabled
+./scripts/run.sh
+cd ..
+
+docker buildx create --name mybuilder
+docker buildx use mybuilder
+docker buildx inspect --bootstrap
 docker login -u"$DOCKERHUBUSER" -p"$DOCKERHUBPASS"
-docker push dcycle/"$PROJECT":"$VERSION"
-docker push dcycle/"$PROJECT":"$MAJORVERSION"
-docker push dcycle/"$PROJECT":"$VERSION"."$DATE"
-docker push dcycle/"$PROJECT":"$MAJORVERSION"."$DATE"
+
+# Start by getting the latest version of the official drupal image
+docker pull alpine
+# Rebuild the entire thing
+docker buildx build -t dcycle/"$PROJECT":"$VERSION" --platform linux/amd64,linux/arm64/v8 --push .
+docker buildx build -t dcycle/"$PROJECT":"$MAJORVERSION" --platform linux/amd64,linux/arm64/v8 --push .
+docker buildx build -t dcycle/"$PROJECT":"$MAJORVERSION".$DATE --platform linux/amd64,linux/arm64/v8 --push .
+docker buildx build -t dcycle/"$PROJECT":"$VERSION".$DATE --platform linux/amd64,linux/arm64/v8 --push .
 # No longer using the latest tag, use the major version tag instead.
