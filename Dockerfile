@@ -1,10 +1,8 @@
-FROM ubuntu
+FROM alpine
 
 WORKDIR /app
 
-RUN apt-get -y update && \
-  apt-get -y --no-install-recommends install ghostscript && \
-  rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache ghostscript
 
 COPY docker-resources/run.sh /run.sh
 
