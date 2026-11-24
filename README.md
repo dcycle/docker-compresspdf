@@ -1,4 +1,4 @@
-[![GitHub Actions](https://github.com/dcycle/docker-compresspdf/actions/workflows/config.yml/badge.svg)](https://github.com/dcycle/docker-compresspdf/actions/workflows/config.yml)
+[![GitHub Actions](https://github.com/dcycle/docker-compresspdf/actions/workflows/config.yml/badge.svg)](../../actions/workflows/config.yml)
 
 Compress PDF using [GhostScript](https://www.ghostscript.com).
 
